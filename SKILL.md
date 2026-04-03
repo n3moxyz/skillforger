@@ -31,7 +31,7 @@ If no mode is specified, auto-detect:
 - Rubrics MUST have weighted criteria that sum to 100%.
 - Rubrics MUST include mandatory verification steps (mechanical checks before scoring).
 - Rubrics MUST include a `## Focus Criteria` section (starts empty with v1.0 — the evolving focus system).
-- Judge skills MUST follow the 3-part pattern: find output -> score quality -> update calibration.
+- Judge skills MUST follow the 4-part pattern: find output -> score quality -> update calibration -> review focus criteria.
 - Calibration files start with a `## Distilled Rules` section (empty) and `## Recent Quality Issues` section (empty).
 - Pass bar is 7.0/10 unless the skill warrants a different bar (justify in the rubric).
 - All file paths must be absolute.
@@ -159,7 +159,7 @@ description: >
 
 # Judge — Score <Skill Name> Output
 
-Three-part workflow: score the output, write the JSON, update calibration.
+Four-part workflow: score the output, write the JSON, update calibration, review focus criteria.
 
 Read the rubric (`references/rubric.md`, loaded with this skill) before scoring.
 
