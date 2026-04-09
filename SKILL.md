@@ -75,7 +75,10 @@ If no mode is specified, auto-detect:
 1. Read the SKILL.md and the most recent output (same as FORGE step 1-3).
 2. Read the existing rubric and calibration file.
 3. Read the most recent judge score JSON if one exists.
-4. Identify the quality gaps from the score + calibration + your own reading of the output.
+4. Check the scoreboard for trend data (if it exists):
+   `workspace/shared-context/feedback/scoreboards/<skill-slug>.tsv`
+5. If `workspace/tools/skill-improver.py` exists, run `python3 workspace/tools/skill-improver.py suggest --skill <skill-name> --json` to get data-driven improvement candidates ranked by priority. Use these alongside your own reading of the output.
+6. Identify the quality gaps from the score + calibration + skill-improver suggestions + your own reading of the output.
 
 ---
 
@@ -317,4 +320,8 @@ Built:
 
 Top issues (if any):
 1. ...
+
+Next step (if skill-improver is available):
+  Run `python3 workspace/tools/skill-improver.py suggest --skill <skill-name>`
+  to see data-driven improvements as scores accumulate.
 ```
