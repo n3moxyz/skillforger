@@ -4,7 +4,7 @@ An AI skill creator that generates complete skills with built-in quality loops. 
 
 ## What it does
 
-Skillforger has three modes:
+Skillforger has three modes. The `$skillforge` syntax below is the Claude Code slash-command form; Codex and other runtimes without slash-command support invoke the skill via a tiny launcher instead — see [Invocation modes](#invocation-modes) below.
 
 ### CREATE — build a new skill from scratch
 ```
@@ -65,6 +65,18 @@ For each skill, Skillforger creates:
 | `judge-score-<name>/references/rubric.md` | Weighted scoring rubric with hard caps, verification steps, and evolving focus criteria |
 | Calibration file | Distilled rules, recent quality issues, and accuracy lessons — read by the skill before every run |
 | Registry entries | Wiring so both the skill and its judge are discoverable |
+
+## Invocation modes
+
+The skill body is identical in every runtime. Only the invocation shape changes.
+
+| Runtime | Invocation | Why |
+|---|---|---|
+| **Claude Code** | `$skillforge create ...` (slash command) | Native slash-command support |
+| **Codex / OpenClaw** | `python3 path/to/skillforge.py create ...` (launcher) | Codex can't resolve slash commands; a thin launcher reads the SKILL.md and pipes it to the model |
+| **Other frameworks** | Read `SKILL.md` into context, pass `create|forge|rebuild <argument>` | Anything that can load a markdown file and follow instructions |
+
+The launcher is trivial (~70 lines): read the canonical SKILL.md, print it with a `mode: <create|forge|rebuild>` and `description:` / `skill-name:` header, and let the model follow it. The real work lives in the SKILL.md itself, which is framework-agnostic.
 
 ## How to use it
 
